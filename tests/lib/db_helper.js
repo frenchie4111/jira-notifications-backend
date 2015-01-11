@@ -4,14 +4,10 @@
     exports.initializeTestDatabase = function initializeTestDatabase() {
         var models = require( '../../app/models' ),
             Sequelize = require( 'sequelize' ),
-            q = require( 'q' );
+            q = require( 'q' ),
+            options_loader = require( '../../lib/options_loader' );
 
-        models.init( {
-            database_name: 'sample_test',
-            database_username: 'sample',
-            database_password: 'sample',
-            sequelize_logging: false
-        } );
+        models.init( options_loader.load( 'test' ) );
 
         return _deleteAll()
             .then( function() {
