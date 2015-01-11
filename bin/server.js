@@ -15,7 +15,7 @@
         var deferred = q.defer();
 
         var database_name = opts.database_name || 'sample_development';
-        var database_url = opts.database_url || '127.0.01';
+        var database_url = opts.database_url || '127.0.0.1';
         var database_port = opts.database_port || 5432;
         var port = opts.port || 1337;
         var database_username = opts.database_username || 'sample';
