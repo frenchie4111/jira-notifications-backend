@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/frenchie4111/node-express-sequelize-template/issues"
   },
-  "homepage": "https://github.com/frenchie4111/node-express-sequelize-template"
+  "homepage": "https://github.com/frenchie4111/node-express-sequelize-template",
+  "dependencies": {
+    "express": "^4.10.7",
+    "sequelize": "^2.0.0-rc7"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0",
+    "trust-rest": "0.0.1"
+  }
 }
