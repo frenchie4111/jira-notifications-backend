@@ -1,0 +1,19 @@
+{
+  "name": "node-express-sequelize-template",
+  "version": "1.0.0",
+  "description": "Template for express server running on heroku with sequelize orm",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frenchie4111/node-express-sequelize-template.git"
+  },
+  "author": "Mike Lyons <mdl0394@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frenchie4111/node-express-sequelize-template/issues"
+  },
+  "homepage": "https://github.com/frenchie4111/node-express-sequelize-template"
+}
