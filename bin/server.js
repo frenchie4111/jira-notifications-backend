@@ -14,13 +14,13 @@
     exports.start = function startServer( opts ) {
         var deferred = q.defer();
 
-        var database_name = opts.database_name || 'mkonerest_development';
+        var database_name = opts.database_name || 'sample_development';
         var database_url = opts.database_url || '127.0.01';
         var database_port = opts.database_port || 5432;
         var port = opts.port || 1337;
-        var database_username = opts.database_username || 'mkonerest';
-        var database_password = opts.database_password || 'mkonerest';
-        var sequelize_logging = opts.sequelize_logging || logger.db;
+        var database_username = opts.database_username || 'sample';
+        var database_password = opts.database_password || 'sample';
+        var sequelize_logging = opts.sequelize_logging || console.log;
         var native = opts.native || false;
 
         // Initialize database
@@ -68,8 +68,6 @@
         server = app.listen( port, function listenCallback() {
             // Initialize Controllers
             controllers.init( app );
-
-            console.log( 'Running' );
             deferred.resolve();
         } );
 
@@ -78,7 +76,6 @@
         } );
 
         server.on( 'close', function() {
-            console.log( 'Closed' );
         } );
 
         return deferred.promise;
