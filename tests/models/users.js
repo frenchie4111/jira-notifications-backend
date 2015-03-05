@@ -118,8 +118,6 @@
                     var user_json = {};
                     user_json[ key ] = new_value;
 
-                    var should_have_error = 'Should have thrown';
-
                     return q
                         .async( function *() {
                             var edited_user = yield user
