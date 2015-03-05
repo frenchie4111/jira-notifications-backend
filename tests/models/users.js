@@ -11,7 +11,8 @@
     require( '../setup' );
 
     var q = require( 'q' ),
-        assert = require( 'chai' ).assert;
+        assert = require( 'chai' ).assert,
+        bcrypt = require( 'bcrypt-then' );
 
     var models = require( '../../app/models' );
 
@@ -92,6 +93,36 @@
                         .then( done )
                         .catch( done );
                 } );
+            } );
+        } )
+
+        describe( 'Users: Instance Methods', function( done ) {
+            var user;
+
+            beforeEach( function( done ) {
+                q.async( function *() {
+                    var user_json = {
+                        email: 'test@test.com',
+                        encrypted_password: 'test',
+                        jira_username: 'test'
+                    };
+
+                    user = yield models.User
+                        .create( user_json );
+                } )().then( done ).catch( done );
+            } );
+
+            it( 'Should set users password with setPassword', function( done ) {
+                q
+                    .async( function *() {
+                        var new_password = 'new password';
+
+                        user = yield user.setPassword( new_password );
+
+                        assert.isDefined( user );
+                        assert( yield bcrypt.compare( new_password, user.encrypted_password ) );
+                    } )()
+                    .then( done ).catch( done );
             } );
         } );
     } );
