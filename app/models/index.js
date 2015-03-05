@@ -44,6 +44,7 @@
             if( models[ modelname ].options.hasOwnProperty( 'associate' ) ) {
                 models[ modelname ].options.associate( models );
             }
+            module.exports[ modelname ] = models[ modelname ];
         } );
 
         // Create exportable database
