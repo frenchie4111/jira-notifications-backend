@@ -1,8 +1,11 @@
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 language: node_js
 node_js:
-  - "0.12"
+- '0.12'
 before_script:
-  - psql -c 'create database isitwhack_test;' -U postgres
+- psql -c 'create database isitwhack_test;' -U postgres
 env: NODE_ENV=travis
+deploy:
+  api_key:
+    secure: fwDShXPmCKFuxFPTi4DfsM2W9CCLpB6rGNoXtkVt5ZSLmbWlAfeGlyY37DtlJ7nSVGd9HEcrPKXbEEXPtef/Bflbpu5vkwVz0tn2Rb3M5v7tygMjAEBsINPn/kZRG0a7wk5SMDIiFWPoWSlhRdoCCHBIXbVJSUQHD7pVlIlfNrk=
