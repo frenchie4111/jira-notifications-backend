@@ -4,7 +4,7 @@
   "description": "Template for express server running on heroku with sequelize orm",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive tests"
+    "test": "node --harmony ./node_modules/.bin/_mocha --recursive tests"
   },
   "repository": {
     "type": "git",
