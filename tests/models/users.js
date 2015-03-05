@@ -54,7 +54,7 @@
 
                     return q
                         .async( function *() {
-                            var user = yield models.User
+                            yield models.User
                                 .create( user_json );
 
                             throw should_have_error;
@@ -94,9 +94,9 @@
                         .catch( done );
                 } );
             } );
-        } )
+        } );
 
-        describe( 'Users: Instance Methods', function( done ) {
+        describe( 'Users: Instance Methods', function() {
             var user;
 
             beforeEach( function( done ) {
