@@ -13,3 +13,4 @@ deploy:
   app: jira-notifications-backend
   on:
     repo: frenchie4111/jira-notifications
+  run: "./scripts/heroku_migrate.sh"
