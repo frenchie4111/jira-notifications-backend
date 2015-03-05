@@ -39,58 +39,60 @@
                     .catch( done );
             } );
 
-            var _userCreateFailure = function( incorrect_key, incorrect_value ) {
-                var user_json = {
-                    email: 'test@test.com',
-                    encrypted_password: 'test',
-                    jira_username: 'test'
+            describe( 'Create: Failures', function() {
+                var _userCreateFailure = function( incorrect_key, incorrect_value ) {
+                    var user_json = {
+                        email: 'test@test.com',
+                        encrypted_password: 'test',
+                        jira_username: 'test'
+                    };
+
+                    user_json[ incorrect_key ] = incorrect_value;
+
+                    var should_have_error = 'Should have thrown';
+
+                    return q
+                        .async( function *() {
+                            var user = yield models.User
+                                .create( user_json );
+
+                            throw should_have_error;
+                        } )()
+                        .catch( function( err ) {
+                            if( err === should_have_error ) throw should_have_error;
+
+                            assert.isDefined( err );
+                            assert.equal( err.name, 'SequelizeValidationError' );
+                            assert.property( err, 'errors' );
+                            assert.equal( err.errors.length, 1, 'Errors length' );
+                            assert.propertyVal( err.errors[ 0 ], 'path', incorrect_key );
+                        } );
                 };
 
-                user_json[ incorrect_key ] = incorrect_value;
+                it( 'Should not create user without email', function( done ) {
+                    _userCreateFailure( 'email', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
 
-                var should_have_error = 'Should have thrown';
+                it( 'Should not create user with invalid', function( done ) {
+                    _userCreateFailure( 'email', 'invalid@invalid' )
+                        .then( done )
+                        .catch( done );
+                } );
 
-                return q
-                    .async( function *() {
-                        var user = yield models.User
-                            .create( user_json );
+                it( 'Should not create user without password', function( done ) {
+                    _userCreateFailure( 'encrypted_password', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
 
-                        throw should_have_error;
-                    } )()
-                    .catch( function( err ) {
-                        if( err === should_have_error ) throw should_have_error;
-
-                        assert.isDefined( err );
-                        assert.equal( err.name, 'SequelizeValidationError' );
-                        assert.property( err, 'errors' );
-                        assert.equal( err.errors.length, 1, 'Errors length' );
-                        assert.propertyVal( err.errors[ 0 ], 'path', incorrect_key );
-                    } );
-            };
-
-            it( 'Should not create user without email', function( done ) {
-                _userCreateFailure( 'email', undefined )
-                    .then( done )
-                    .catch( done );
+                it( 'Should not create user without jira_username', function( done ) {
+                    _userCreateFailure( 'jira_username', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
             } );
-
-            it( 'Should not create user with invalid', function( done ) {
-                _userCreateFailure( 'email', 'invalid@invalid' )
-                    .then( done )
-                    .catch( done );
-            } );
-
-            it( 'Should not create user without password', function( done ) {
-                _userCreateFailure( 'encrypted_password', undefined )
-                    .then( done )
-                    .catch( done );
-            } );
-
-            it( 'Should not create user without jira_username', function( done ) {
-                _userCreateFailure( 'jira_username', undefined )
-                    .then( done )
-                    .catch( done );
-            } );
-        } )
+        } );
     } );
 })();
