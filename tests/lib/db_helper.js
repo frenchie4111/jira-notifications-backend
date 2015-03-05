@@ -7,7 +7,7 @@
             q = require( 'q' ),
             options_loader = require( '../../lib/options_loader' );
 
-        models.init( options_loader.load( 'test' ) );
+        models.init( options_loader.load( process.env.NODE_ENV || 'test' ) );
 
         return _deleteAll()
             .then( function() {
