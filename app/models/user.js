@@ -8,6 +8,9 @@
 (function() {
     'use strict';
 
+    var q = require( 'q' ),
+        bcrypt = require( 'bcrypt-then' );
+
     module.exports = function initAccessToken( sequelize, DataTypes ) {
         var User = sequelize.define( 'User', {
             email: {
@@ -30,6 +33,16 @@
             associate: function( models ) {
             }
         } );
+
+        User.Instance.prototype.setPassword = function( password, transaction ) {
+            var _this = this;
+
+            return q
+                .async( function *() {
+                    var hashed = yield bcrypt.hash( password );
+                    return yield _this.updateAttributes( { encrypted_password: hashed }, { transaction: transaction } );
+                } )();
+        };
 
         return User;
     }
