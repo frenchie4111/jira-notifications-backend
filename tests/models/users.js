@@ -70,25 +70,25 @@
                         } );
                 };
 
-                it( 'Should not create user without email', function( done ) {
+                it( 'undefined email', function( done ) {
                     _userCreateFailure( 'email', undefined )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user with invalid', function( done ) {
+                it( 'invalid email', function( done ) {
                     _userCreateFailure( 'email', 'invalid@invalid' )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user without password', function( done ) {
+                it( 'undefined encrypted_password', function( done ) {
                     _userCreateFailure( 'encrypted_password', undefined )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user without jira_username', function( done ) {
+                it( 'undefined jira_username', function( done ) {
                     _userCreateFailure( 'jira_username', undefined )
                         .then( done )
                         .catch( done );
@@ -130,15 +130,15 @@
                         } )();
                 };
 
-                it( 'Should be able to update users email', function( done ) {
+                it( 'email', function( done ) {
                     _usersEdit( 'email', 'new_email@test.com' ).then( done ).catch( done );
                 } );
 
-                it( 'Should be able to update users encrypted_password', function( done ) {
+                it( 'encrypted_password', function( done ) {
                     _usersEdit( 'encrypted_password', 'new pass' ).then( done ).catch( done );
                 } );
 
-                it( 'Should be able to update users jira_username', function( done ) {
+                it( 'jira_username', function( done ) {
                     _usersEdit( 'jira_username', 'new' ).then( done ).catch( done );
                 } );
             } );
@@ -173,25 +173,25 @@
                         } );
                 };
 
-                it( 'Should not create user without email', function( done ) {
+                it( 'undefined email', function( done ) {
                     _usersEditFailure( 'email', undefined )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user with invalid', function( done ) {
+                it( 'Invalid email', function( done ) {
                     _usersEditFailure( 'email', 'invalid@invalid' )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user without password', function( done ) {
+                it( 'undefined encrypted_password', function( done ) {
                     _usersEditFailure( 'encrypted_password', undefined )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'Should not create user without jira_username', function( done ) {
+                it( 'undefined jira_username', function( done ) {
                     _usersEditFailure( 'jira_username', undefined )
                         .then( done )
                         .catch( done );
