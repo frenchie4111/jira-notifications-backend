@@ -96,6 +96,109 @@
             } );
         } );
 
+        describe( 'Users: edit', function() {
+            var user;
+
+            beforeEach( function( done ) {
+                q.async( function *() {
+                    var user_json = {
+                        email: 'test@test.com',
+                        encrypted_password: 'test',
+                        jira_username: 'test'
+                    };
+
+                    user = yield models.User
+                        .create( user_json );
+
+                } )().then( done ).catch( done );
+            } );
+
+            describe( 'Edit: Succeed', function() {
+                var _usersEdit = function( key, new_value ) {
+                    var user_json = {};
+                    user_json[ key ] = new_value;
+
+                    var should_have_error = 'Should have thrown';
+
+                    return q
+                        .async( function *() {
+                            var edited_user = yield user
+                                .edit( user_json );
+
+                            assert.isDefined( edited_user );
+                            assert.propertyVal( edited_user, key, new_value );
+                        } )();
+                };
+
+                it( 'Should be able to update users email', function( done ) {
+                    _usersEdit( 'email', 'new_email@test.com' ).then( done ).catch( done );
+                } );
+
+                it( 'Should be able to update users encrypted_password', function( done ) {
+                    _usersEdit( 'encrypted_password', 'new pass' ).then( done ).catch( done );
+                } );
+
+                it( 'Should be able to update users jira_username', function( done ) {
+                    _usersEdit( 'jira_username', 'new' ).then( done ).catch( done );
+                } );
+            } );
+
+            describe( 'Edit: Failure', function() {
+                var _usersEditFailure = function( incorrect_key, incorrect_value ) {
+                    var user_json = {
+                        email: 'test@test.com',
+                        encrypted_password: 'test',
+                        jira_username: 'test'
+                    };
+
+                    user_json[ incorrect_key ] = incorrect_value;
+
+                    var should_have_error = 'Should have thrown';
+
+                    return q
+                        .async( function *() {
+                            yield user
+                                .edit( user_json );
+
+                            throw should_have_error;
+                        } )()
+                        .catch( function( err ) {
+                            if( err === should_have_error ) throw should_have_error;
+
+                            assert.isDefined( err );
+                            assert.equal( err.name, 'SequelizeValidationError' );
+                            assert.property( err, 'errors' );
+                            assert.equal( err.errors.length, 1, 'Errors length' );
+                            assert.propertyVal( err.errors[ 0 ], 'path', incorrect_key );
+                        } );
+                };
+
+                it( 'Should not create user without email', function( done ) {
+                    _usersEditFailure( 'email', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
+
+                it( 'Should not create user with invalid', function( done ) {
+                    _usersEditFailure( 'email', 'invalid@invalid' )
+                        .then( done )
+                        .catch( done );
+                } );
+
+                it( 'Should not create user without password', function( done ) {
+                    _usersEditFailure( 'encrypted_password', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
+
+                it( 'Should not create user without jira_username', function( done ) {
+                    _usersEditFailure( 'jira_username', undefined )
+                        .then( done )
+                        .catch( done );
+                } );
+            } );
+        } );
+
         describe( 'Users: Instance Methods', function() {
             var user;
 
