@@ -173,8 +173,8 @@
                         } );
                 };
 
-                it( 'undefined email', function( done ) {
-                    _usersEditFailure( 'email', undefined )
+                it( 'null email', function( done ) {
+                    _usersEditFailure( 'email', null )
                         .then( done )
                         .catch( done );
                 } );
@@ -185,14 +185,14 @@
                         .catch( done );
                 } );
 
-                it( 'undefined encrypted_password', function( done ) {
-                    _usersEditFailure( 'encrypted_password', undefined )
+                it( 'null encrypted_password', function( done ) {
+                    _usersEditFailure( 'encrypted_password', null )
                         .then( done )
                         .catch( done );
                 } );
 
-                it( 'undefined jira_username', function( done ) {
-                    _usersEditFailure( 'jira_username', undefined )
+                it( 'null jira_username', function( done ) {
+                    _usersEditFailure( 'jira_username', null )
                         .then( done )
                         .catch( done );
                 } );
