@@ -7,5 +7,9 @@ before_script:
 - psql -c 'create database isitwhack_test;' -U postgres
 env: NODE_ENV=travis
 deploy:
+  provider: heroku
   api_key:
-    secure: fwDShXPmCKFuxFPTi4DfsM2W9CCLpB6rGNoXtkVt5ZSLmbWlAfeGlyY37DtlJ7nSVGd9HEcrPKXbEEXPtef/Bflbpu5vkwVz0tn2Rb3M5v7tygMjAEBsINPn/kZRG0a7wk5SMDIiFWPoWSlhRdoCCHBIXbVJSUQHD7pVlIlfNrk=
+    secure: L62Wc50ac526tYGzcEbeQ1O/KJpqGajU6vwiAVoKZiwqsVBKD2N/v4hsAO9MlPygyiqRuo8iIftnCzpQtr0e4z6OE7i3EEOCbrvkY048ogYyNovz/g4/4Qng9Vwi4+7kuT7/7bXFvuWnpArWc5Wt9bKJjuOr6VNv47P7xlRCCE0=
+  app: jira-notifications-backend
+  on:
+    repo: frenchie4111/jira-notifications
