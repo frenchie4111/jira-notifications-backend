@@ -145,12 +145,7 @@
 
             describe( 'Edit: Failure', function() {
                 var _usersEditFailure = function( incorrect_key, incorrect_value ) {
-                    var user_json = {
-                        email: 'test@test.com',
-                        encrypted_password: 'test',
-                        jira_username: 'test'
-                    };
-
+                    var user_json = {};
                     user_json[ incorrect_key ] = incorrect_value;
 
                     var should_have_error = 'Should have thrown';
