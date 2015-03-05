@@ -5,6 +5,8 @@ node_js:
 - '0.12'
 before_script:
 - psql -c 'create database jira_notifications_test;' -U postgres
+- npm install -g sequelize-cli
+- sequelize db:migrate --env test --config config/travis.json
 env: NODE_ENV=travis
 deploy:
   provider: heroku

@@ -1,0 +1,9 @@
+{
+    "test": {
+        "username": "postgres",
+        "password": "",
+        "database": "jira_notifications_test",
+        "host": "127.0.0.1",
+        "dialect": "postgresql"
+    }
+}
