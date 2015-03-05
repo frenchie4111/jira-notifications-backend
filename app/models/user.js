@@ -34,6 +34,12 @@
             }
         } );
 
+        User.editableFields = [
+            'email',
+            'encrypted_password',
+            'jira_username'
+        ];
+
         User.Instance.prototype.setPassword = function( password, transaction ) {
             var _this = this;
 
