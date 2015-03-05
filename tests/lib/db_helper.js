@@ -16,6 +16,7 @@
     };
 
     var classes_to_delete = [
+        'User'
     ];
 
     function _deleteAll() {
