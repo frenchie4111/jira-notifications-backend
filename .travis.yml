@@ -12,5 +12,5 @@ deploy:
     secure: L62Wc50ac526tYGzcEbeQ1O/KJpqGajU6vwiAVoKZiwqsVBKD2N/v4hsAO9MlPygyiqRuo8iIftnCzpQtr0e4z6OE7i3EEOCbrvkY048ogYyNovz/g4/4Qng9Vwi4+7kuT7/7bXFvuWnpArWc5Wt9bKJjuOr6VNv47P7xlRCCE0=
   app: jira-notifications-backend
   on:
-    repo: frenchie4111/jira-notifications
+    repo: frenchie4111/jira-notifications-backend
   run: "./scripts/heroku_migrate.sh"
